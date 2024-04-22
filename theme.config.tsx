@@ -2,6 +2,15 @@ import React from 'react';
 import { DocsThemeConfig } from 'nextra-theme-docs';
 
 const config: DocsThemeConfig = {
+  toc: {
+    title: '목차',
+  },
+  editLink: {
+    component: null,
+  },
+  feedback: {
+    content: null,
+  },
   sidebar: {
     defaultMenuCollapseLevel: 1,
     titleComponent({ title, type }) {
