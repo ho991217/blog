@@ -1,13 +1,17 @@
 {
-  "index": "Introduction",
+  "index": "안녕하세요!",
   "another": "Another Page",
   "advanced": "Advanced (A Folder)",
-  "whoami": {
-    "title": "whoami",
+  "profile": {
+    "title": "프로필",
+    "type": "page"
+  },
+  "insight": {
+    "title": "인사이트",
     "type": "page"
   },
   "contact": {
-    "title": "Contact ↗",
+    "title": "연락하기 ↗",
     "type": "page",
     "href": "mailto:ho991217@kakao.com"
   }
