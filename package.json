@@ -17,10 +17,12 @@
   "dependencies": {
     "@vercel/analytics": "^1.2.2",
     "next": "^13.0.6",
+    "nextjs-toploader": "^1.6.11",
     "nextra": "latest",
     "nextra-theme-docs": "latest",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "tailwind-merge": "^2.3.0"
   },
   "devDependencies": {
     "@types/node": "18.11.10",

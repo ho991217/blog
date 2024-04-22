@@ -1,13 +1,82 @@
-# 프로필
+import Card from 'components/ui/card';
+import { Contributions, Organization } from 'components/profile';
+import { Steps } from 'nextra/components';
 
-<main className='w-full flex gap-8 mt-4'>
-  <section className='max-w-56 w-full flex flex-col'>
-    <img src='/images/이호연.jpg' className='w-full rounded-lg mb-4' />
+<main className='w-full flex gap-4 mt-6'>
+  <section className='max-w-72 w-full flex flex-col'>
+    <img src='/images/이호연.jpg' className='w-full rounded-xl mb-4' />
     <h4 className='text-xl font-bold'>이호연</h4>
+    <p className="text-neutral-500 mb-4">@ho991217</p>
+    <div>📬 이메일 ho991217@kakao.com</div>
+    <div>🐈‍⬛ 깃허브 https://github.com/ho991217</div>
   </section>
-  <section className='flex-1 flex flex-col'>
-    <a href='https://github.com/ho991217' className='w-full'>
-      <img src='https://ghchart.rshah.org/219138/ho991217' className='w-full' />
-    </a>
+
+  <section className='flex-1 flex flex-col gap-4'>
+    <Card>
+      <Card.Title className='text-xl font-semibold mb-2'>소개</Card.Title>
+      <p>안녕하세요! 프론트엔드 개발자 이호연입니다.</p>
+      <br />
+      <p>저는</p>
+      <ul className="list-inside list-disc">
+        <li className="list-item">업무에 애정을 가지고 몰입하는 <strong>워커홀릭</strong> 입니다.</li>
+        <li className="list-item">업무에 애정을 가지고 몰입하는 <strong>워커홀릭</strong> 입니다.</li>
+        <li className="list-item">업무에 애정을 가지고 몰입하는 <strong>워커홀릭</strong> 입니다.</li>
+      </ul>
+      <br />
+      <div className="flex gap-1 items-center">
+      <p>지금까지</p>
+        <a href="https://wakatime.com/@c6d7f260-ad25-4072-a4ea-11cdfc7fdcb9" className="flex items-center">
+          <img src="https://wakatime.com/badge/user/c6d7f260-ad25-4072-a4ea-11cdfc7fdcb9.svg" alt="Total time coded since Oct 7 2021" />
+        </a>
+      <p>시간동안 성장했습니다.</p>
+      </div>
+    </Card>
+
+    <Card>
+      <Card.Title className='text-xl font-semibold mb-2'>깃허브</Card.Title>
+      <a href='https://github.com/ho991217' className='w-full'>
+        <div className="flex w-full justify-between items-center">
+          컨트리뷰션 그래프
+          <Contributions />
+        </div>
+        <img
+          src='https://ghchart.rshah.org/219138/ho991217'
+          className='w-full px-4 my-2'
+        />
+      </a>
+
+      <div className="flex flex-col mt-4">
+        컨트리뷰션
+        <div className="w-full flex gap-2">
+          <Organization name="@LinkValueCorp" href="https://github.com/LinkValueCorp" imageUrl="https://avatars.githubusercontent.com/u/137167808?s=200&v=4" />
+          <Organization name="@EveryUniv" href="https://github.com/EveryUniv" imageUrl="https://avatars.githubusercontent.com/u/100060679?s=200&v=4" />
+          <Organization name="@toss/slash" href="https://github.com/toss/slash" imageUrl="https://avatars.githubusercontent.com/u/25682207?s=200&v=4" />
+          <Organization name="@ToyVallet" href="https://github.com/ToyVallet" imageUrl="https://avatars.githubusercontent.com/u/156063000?s=200&v=4" />
+        </div>
+      </div>
+    </Card>
+
+    <Card>
+      <Card.Title>학력</Card.Title>
+
+      <Steps>
+        ### 용인 구성고등학교
+
+        2015 ~ 2017 졸업
+
+        ### 단국대학교 죽전캠퍼스
+
+        2018 ~ 재학
+      </Steps>
+    </Card>
+
+    <Card>
+      <Card.Title>자격증</Card.Title>
+    </Card>
+
+    <Card>
+      <Card.Title>수상 내역</Card.Title>
+    </Card>
+
   </section>
 </main>

@@ -1,14 +1,27 @@
 {
   "index": "안녕하세요!",
-  "another": "Another Page",
-  "advanced": "Advanced (A Folder)",
+  "---": {
+    "type": "separator"
+  },
+  "danfesta": "단페스타",
+  "dku-student-council": "단국대학교 총학생회",
+  "wpluscoding": "W+ 코딩",
+  "linkvalue": "링크밸류",
+  "d-coding": "D-코딩",
+  "dansinsa": "단신사",
   "profile": {
     "title": "프로필",
-    "type": "page"
+    "type": "page",
+    "theme": {
+      "layout": "full"
+    }
   },
   "insight": {
     "title": "인사이트",
-    "type": "page"
+    "type": "page",
+    "theme": {
+      "sidebar": false
+    }
   },
   "contact": {
     "title": "연락하기 ↗",

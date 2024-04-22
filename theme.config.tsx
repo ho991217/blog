@@ -2,6 +2,13 @@ import React from 'react';
 import { DocsThemeConfig } from 'nextra-theme-docs';
 
 const config: DocsThemeConfig = {
+  sidebar: {
+    defaultMenuCollapseLevel: 1,
+  },
+  search: {
+    placeholder: '검색...',
+  },
+  navigation: false,
   logo: (
     <div className='flex items-center gap-2'>
       <img
