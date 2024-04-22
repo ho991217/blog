@@ -1,5 +1,5 @@
 {
-  "name": "nextra-docs-template",
+  "name": "blog",
   "version": "0.0.1",
   "description": "Nextra docs template",
   "scripts": {
@@ -9,14 +9,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shuding/nextra-docs-template.git"
+    "url": "git+https://github.com/ho991217/blog"
   },
-  "author": "Shu Ding <g@shud.in>",
+  "author": "Ho Yeon Lee <ho991217@kakao.com>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/shuding/nextra-docs-template/issues"
-  },
-  "homepage": "https://github.com/shuding/nextra-docs-template#readme",
+  "homepage": "https://github.com/ho991217/blog#readme",
   "dependencies": {
     "next": "^13.0.6",
     "nextra": "latest",
