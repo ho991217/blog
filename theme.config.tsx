@@ -34,14 +34,14 @@ const config: DocsThemeConfig = {
       <img
         src='/icons/logo_black.png'
         alt='프로필 이미지'
-        className='w-4 h-4 object-cover dark:hidden'
+        className='w-5 h-5 object-cover dark:hidden'
       />
       <img
         src='/icons/logo_white.png'
         alt='프로필 이미지'
-        className='hidden w-4 h-4 object-cover dark:block'
+        className='hidden w-5 h-5 object-cover dark:block'
       />
-      <h2 className='font-semibold'>이호연 기술 블로그</h2>
+      <h2 className='font-bold text-xl'>이호연 기술 블로그</h2>
     </div>
   ),
   project: {
