@@ -22,7 +22,7 @@ const config: DocsThemeConfig = {
           </div>
         );
       }
-      return title;
+      return <>{title}</>;
     },
   },
   search: {
