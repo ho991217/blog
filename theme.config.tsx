@@ -82,6 +82,10 @@ const config: DocsThemeConfig = {
   head: (
     <>
       <meta name='viewport' content='width=device-width, initial-scale=1' />
+      <meta name='og:type' content='website' />
+      <meta name='og:title' content='이호연 기술 블로그' />
+      <meta name='og:description' content='이호연의 기술 블로그입니다.' />
+      <meta name='og:image' content='/images/og.png' />
       <link
         rel='apple-touch-icon'
         sizes='180x180'
