@@ -1,5 +1,6 @@
 import React from 'react';
-import { DocsThemeConfig } from 'nextra-theme-docs';
+import { DocsThemeConfig, useConfig } from 'nextra-theme-docs';
+import { useRouter } from 'next/router';
 
 const config: DocsThemeConfig = {
   toc: {
@@ -79,33 +80,52 @@ const config: DocsThemeConfig = {
       titleTemplate: '%s - 이호연',
     };
   },
-  head: (
-    <>
-      <meta name='viewport' content='width=device-width, initial-scale=1' />
-      <meta name='og:type' content='website' />
-      <meta name='og:title' content='이호연 기술 블로그' />
-      <meta name='og:description' content='이호연의 기술 블로그입니다.' />
-      <meta name='og:image' content='/images/og.png' />
-      <link
-        rel='apple-touch-icon'
-        sizes='180x180'
-        href='/favicon/apple-touch-icon.png'
-      />
-      <link
-        rel='icon'
-        type='image/png'
-        sizes='32x32'
-        href='/favicon/favicon-32x32.png'
-      />
-      <link
-        rel='icon'
-        type='image/png'
-        sizes='16x16'
-        href='/favicon/favicon-16x16.png'
-      />
-      <link rel='manifest' href='/favicon/site.webmanifest' />
-    </>
-  ),
+  head: () => {
+    const { route } = useRouter();
+    const { frontMatter, title } = useConfig();
+    const imageUrl = new URL('https://ho991217.vercel.app');
+
+    if (!/\/index\.+/.test(route)) {
+      imageUrl.searchParams.set('title', title || frontMatter.title);
+    }
+
+    const ogTitle = title
+      ? `${title} – 이호연 기술 블로그`
+      : `이호연 기술블로그`;
+    const ogDescription =
+      frontMatter.description || '이호연 기술 블로그입니다.';
+    const ogImage = frontMatter.image || '/images/og.png';
+
+    return (
+      <>
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
+        <meta name='description' content={ogDescription} />
+        <meta name='og:type' content='website' />
+        <meta name='twitter:image' content={ogImage} />
+        <meta property='og:title' content={ogTitle} />
+        <meta property='og:description' content={ogDescription} />
+        <meta property='og:image' content={ogImage} />
+        <link
+          rel='apple-touch-icon'
+          sizes='180x180'
+          href='/favicon/apple-touch-icon.png'
+        />
+        <link
+          rel='icon'
+          type='image/png'
+          sizes='32x32'
+          href='/favicon/favicon-32x32.png'
+        />
+        <link
+          rel='icon'
+          type='image/png'
+          sizes='16x16'
+          href='/favicon/favicon-16x16.png'
+        />
+        <link rel='manifest' href='/favicon/site.webmanifest' />
+      </>
+    );
+  },
 };
 
 export default config;
