@@ -4,6 +4,17 @@ import { DocsThemeConfig } from 'nextra-theme-docs';
 const config: DocsThemeConfig = {
   sidebar: {
     defaultMenuCollapseLevel: 1,
+    titleComponent({ title, type }) {
+      if (type === 'separator') {
+        return (
+          <div className='flex items-center gap-2 text-neutral-400 dark:text-neutral-500 font-normal'>
+            {title}
+            <div className='h-0 flex-1 border-t-[0.5px] border-neutral-500' />
+          </div>
+        );
+      }
+      return title;
+    },
   },
   search: {
     placeholder: '검색...',

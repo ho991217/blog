@@ -1,14 +1,21 @@
 {
   "index": "안녕하세요!",
-  "---": {
-    "type": "separator"
+  "-": {
+    "type": "separator",
+    "title": "프로젝트"
   },
   "danfesta": "단페스타",
   "dku-student-council": "단국대학교 총학생회",
   "wpluscoding": "W+ 코딩",
   "linkvalue": "링크밸류",
-  "d-coding": "D-코딩",
   "dansinsa": "단신사",
+  "--": {
+    "type": "separator",
+    "title": "대외활동"
+  },
+  "sessaccon": "새싹콘",
+  "aegis": "이지스",
+  "d-coding": "D-코딩",
   "profile": {
     "title": "프로필",
     "type": "page",

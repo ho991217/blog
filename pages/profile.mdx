@@ -2,13 +2,15 @@ import Card from 'components/ui/card';
 import { Contributions, Organization } from 'components/profile';
 import { Steps } from 'nextra/components';
 
-<main className='w-full flex gap-4 mt-6'>
-  <section className='max-w-72 w-full flex flex-col'>
+<main className='w-full flex flex-col gap-4 mt-6 md:flex-row'>
+  <section className='w-full flex flex-col md:max-w-72'>
     <img src='/images/이호연.jpg' className='w-full rounded-xl mb-4' />
-    <h4 className='text-xl font-bold'>이호연</h4>
-    <p className="text-neutral-500 mb-4">@ho991217</p>
-    <div>📬 이메일 ho991217@kakao.com</div>
-    <div>🐈‍⬛ 깃허브 https://github.com/ho991217</div>
+    <div>
+      <h4 className='text-xl font-bold'>이호연</h4>
+      <p className="text-neutral-500 mb-4">@ho991217</p>
+      <div>📬 이메일 ho991217@kakao.com</div>
+      <div>🐈‍⬛ 깃허브 https://github.com/ho991217</div>
+    </div>
   </section>
 
   <section className='flex-1 flex flex-col gap-4'>
@@ -47,7 +49,7 @@ import { Steps } from 'nextra/components';
 
       <div className="flex flex-col mt-4">
         컨트리뷰션
-        <div className="w-full flex gap-2">
+        <div className="w-full flex flex-col gap-2 md:flex-row">
           <Organization name="@LinkValueCorp" href="https://github.com/LinkValueCorp" imageUrl="https://avatars.githubusercontent.com/u/137167808?s=200&v=4" />
           <Organization name="@EveryUniv" href="https://github.com/EveryUniv" imageUrl="https://avatars.githubusercontent.com/u/100060679?s=200&v=4" />
           <Organization name="@toss/slash" href="https://github.com/toss/slash" imageUrl="https://avatars.githubusercontent.com/u/25682207?s=200&v=4" />
