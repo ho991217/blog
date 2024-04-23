@@ -1,6 +1,7 @@
 import React from 'react';
 import { DocsThemeConfig, useConfig } from 'nextra-theme-docs';
 import { useRouter } from 'next/router';
+import { Thumbnail, Author } from './components';
 
 const config: DocsThemeConfig = {
   toc: {
@@ -74,6 +75,19 @@ const config: DocsThemeConfig = {
   docsRepositoryBase: 'https://github.com/ho991217',
   footer: {
     text: '2024 © 이호연 All rights reserved.',
+  },
+  main: ({ children }) => {
+    const { frontMatter, title } = useConfig();
+    return (
+      <>
+        <h1 className='nx-mt-2 nx-text-4xl nx-font-bold nx-tracking-tight nx-text-slate-900 dark:nx-text-slate-100'>
+          {frontMatter?.title ?? title}
+        </h1>
+        {frontMatter?.date && <Author date={frontMatter.date} />}
+        {frontMatter?.image && <Thumbnail src={frontMatter.image} />}
+        {children}
+      </>
+    );
   },
   useNextSeoProps() {
     return {

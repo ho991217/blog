@@ -1,4 +1,9 @@
-export default function Author({ date, by = 'by' }) {
+type AuthorProps = {
+  date: string;
+  by?: string;
+};
+
+export default function Author({ date, by = 'by' }: AuthorProps) {
   return (
     <div className='mt-4 mb-16 text-gray-500 text-sm'>
       {date} {by}

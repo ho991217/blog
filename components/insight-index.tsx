@@ -11,17 +11,17 @@ export default function InsightIndex() {
             style={{ color: 'inherit', textDecoration: 'none' }}
             className='block font-semibold mt-8 text-2xl mb-6'
           >
-            {page.meta?.title || page.frontMatter?.title || page.name}
-            {page.frontMatter?.image && (
+            {page.meta?.title || page.meta?.title || page.name}
+            {page.meta?.image && (
               <img
-                src={page.frontMatter.image}
-                alt={page.frontMatter?.title || page.name}
+                src={page.meta.image}
+                alt={page.meta?.title || page.name}
                 className='w-full h-48 object-cover rounded-lg mt-1'
               />
             )}
           </Link>
         </h3>
-        <p className='opacity-80 leading-7'>{page.frontMatter?.description} </p>
+        <p className='opacity-80 leading-7'>{page.meta?.description} </p>
         <span className='inline-block'>
           <Link
             href={page.route}
@@ -30,9 +30,9 @@ export default function InsightIndex() {
             더 보기 →
           </Link>
         </span>
-        {page.frontMatter?.date ? (
+        {page.meta?.date ? (
           <p className='opacity-50 text-sm mt-6 leading-7'>
-            {page.frontMatter.date}
+            {page.meta.date}
           </p>
         ) : null}
       </div>
