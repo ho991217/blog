@@ -77,12 +77,14 @@ const config: DocsThemeConfig = {
     text: '2024 © 이호연 All rights reserved.',
   },
   main: ({ children }) => {
-    const { frontMatter, title } = useConfig();
+    const { frontMatter } = useConfig();
     return (
       <>
-        <h1 className='nx-mt-2 nx-text-4xl nx-font-bold nx-tracking-tight nx-text-slate-900 dark:nx-text-slate-100'>
-          {frontMatter?.title ?? title}
-        </h1>
+        {frontMatter?.title && (
+          <h1 className='nx-mt-2 nx-text-4xl nx-font-bold nx-tracking-tight nx-text-slate-900 dark:nx-text-slate-100'>
+            {frontMatter.title}
+          </h1>
+        )}
         {frontMatter?.date && <Author date={frontMatter.date} />}
         {frontMatter?.image && <Thumbnail src={frontMatter.image} />}
         {children}

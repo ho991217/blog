@@ -1,4 +1,14 @@
 {
-  "_2_does_next_needs_tanstack_query": "Next JS에 Tanstack Query가 필요할까?",
-  "_1_toss_interview": "2023 Toss Next 개발자 챌린지 면접 후기"
+  "does_next_needs_tanstack_query": {
+    "title": "Next JS에 Tanstack Query가 필요할까?",
+    "theme": {
+      "sidebar": false
+    }
+  },
+  "toss_interview": {
+    "title": "2023 Toss Next 개발자 챌린지 면접 후기",
+    "theme": {
+      "sidebar": false
+    }
+  }
 }
