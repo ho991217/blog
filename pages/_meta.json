@@ -14,11 +14,16 @@
     "type": "separator",
     "title": "대외활동"
   },
-  "sessaccon": "새싹콘",
   "aegis": "이지스",
   "d-coding": "D-코딩",
-  "gyeong-so-ton":"경소톤",
-  "hanium":"한이음",
+  "gyeong-so-ton": "경소톤",
+  "hanium": "한이음",
+  "----": {
+    "type": "separator",
+    "title": "그 외"
+  },
+  "opensource-contribution": "오픈소스 기여",
+  "speaker": "연사",
   "profile": {
     "title": "프로필",
     "type": "page",
