@@ -9,9 +9,9 @@ export default function Thumbnail({ src }: ThumbnailProps) {
     <Image
       src={src}
       alt={src.split('/').at(-1)}
-      width={1200}
-      height={630}
-      className='mx-auto my-4 rounded-xl'
+      width={832}
+      height={468}
+      className='mx-auto my-4 rounded-xl w-[832px] h-[468px] object-cover'
     />
   );
 }
