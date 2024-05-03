@@ -1,0 +1,76 @@
+---
+title: Flipio 라이브러리 만들기
+date: 2024년 5월 2일
+---
+
+## 갑자기 왜?
+
+단페스타 2024를 리뉴얼하며 텍스트 전환 애니메이션 라이브러리의 필요성을 느낌
+
+## 이미 있지 않나?
+
+![react-text-transition](../../public/images/flipio/react-text-transition.gif)
+
+<a
+  className='text-neutral-500 underline underline-offset-2 hover:text-neutral-600'
+  href='https://github.com/WinterCore/react-text-transition'
+>
+  react-text-transition 깃허브 레포지토리
+</a>
+
+누군가 만들어놓은 `react-text-transition`라는 라이브러리가 있다. 하지만 이 라이브러리는 텍스트 전환 애니메이션을 제공하는 데에 있어서 다음과 같은 문제점이 있었다.
+
+### 1. 반복되는 코드가 너무 많다.
+
+`react-text-transition` 는 다음과 같이 사용 해야한다.
+
+```tsx
+import React from 'react';
+import TextTransition, { presets } from 'react-text-transition';
+
+const TEXTS = ['Forest', 'Building', 'Tree', 'Color'];
+
+const App = () => {
+  const [index, setIndex] = React.useState(0);
+
+  React.useEffect(() => {
+    const intervalId = setInterval(
+      () => setIndex((index) => index + 1),
+      3000 // every 3 seconds
+    );
+    return () => clearTimeout(intervalId);
+  }, []);
+
+  return (
+    <h1>
+      <TextTransition springConfig={presets.wobbly}>
+        {TEXTS[index % TEXTS.length]}
+      </TextTransition>
+    </h1>
+  );
+};
+```
+
+뜨악... 이건 너무 많은 코드다. `TEXTS` 배열에 텍스트를 넣고, `index`를 통해 텍스트를 전환하고, `useEffect`를 통해 텍스트를 전환하는 시간을 조절하고...
+이걸 라이브러리라고 할 수 있을까? 나는 최대한 단순한 사용성을 원했다.
+
+### 2. 미리 준비된 텍스트만 사용할 수 있다.
+
+`react-text-transition` 는 미리 준비된 텍스트만 사용할 수 있었다.
+
+```tsx
+const TEXTS = ['Forest', 'Building', 'Tree', 'Color'];
+```
+
+이렇게 변경할 텍스트를 배열안에 넣어놓고 인덱스를 사용해 전환하는 방식이기 때문에, 상태가 업데이트되어 텍스트가 변경되면 애니메이션을 보여줄 수 없었다.
+
+### 3. 기능이 부족하다.
+
+`react-text-transition` 는 텍스트 전환 애니메이션을 제공하는 데에 있어서 다음과 같은 기능이 부족했다.
+
+1. 숫자를 전환할 때 콤마를 찍어주는 기능이 필요했다.
+2. 숫자를 전환할 때 숫자가 차례로 올라가는 애니메이션을 보여주는 기능이 필요했다.
+3. 문장을 전환할 때 단어별로 애니메이션을 보여주는 기능이 필요했다.
+
+## 구현
+
