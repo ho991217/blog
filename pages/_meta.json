@@ -2,24 +2,27 @@
   "index": "안녕하세요!",
   "-": {
     "type": "separator",
-    "title": "프로젝트"
+    "title": "2024"
   },
-  "flipio": "Flipio",
   "danfesta": "단페스타",
   "swifty": "스위프티",
   "dku-student-council": "단국대학교 총학생회",
-  "wpluscoding": "W+ 코딩",
   "linkvalue": "링크밸류",
-  "dansinsa": "단신사",
   "--": {
     "type": "separator",
-    "title": "대외활동"
+    "title": "2023"
+  },
+  "wpluscoding": "W+ 코딩",
+  "dansinsa": "단신사",
+  "d-coding": "D-코딩",
+  "----": {
+    "type": "separator",
+    "title": "2022"
   },
   "aegis": "이지스",
-  "d-coding": "D-코딩",
   "gyeong-so-ton": "경소톤",
   "hanium": "한이음",
-  "----": {
+  "-----": {
     "type": "separator",
     "title": "그 외"
   },
