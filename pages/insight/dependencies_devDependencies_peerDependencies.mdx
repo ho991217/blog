@@ -3,3 +3,140 @@ title: dependencies, devDependencies, 그리고 peerDependencies
 date: 2024년 6월 23일
 image: /images/insight/dependencies_devDependencies_peerDependencies/thumbnail.png
 ---
+
+## dependencies, devDependencies, 그리고 peerDependencies
+
+`dependencies`, `devDependencies`, `peerDependencies`는 npm 패키지의 종속성을 관리하는데 사용되는 필드이다. <br/>
+이 필드들은 `package.json` 파일에 정의되어 있으며, 이 글에서는 각 필드의 역할과 차이점에 대해 알아보겠다.
+
+### dependencies
+
+`dependencies` 필드는 프로젝트가 실행될 때 필요한 패키지를 정의하는데 사용된다. <br/>
+이 필드에 정의된 패키지들은 프로젝트를 실행하기 위해 반드시 필요한 패키지들이다.
+
+```json filename="package.json"
+{
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
+```
+
+위의 예시에서 `react`와 `react-dom` 패키지는 프로젝트를 실행하기 위해 반드시 필요한 패키지들이다.
+
+#### 버전 표기법
+
+`dependencies` 필드에 정의된 패키지들은 SemVer 버전 표기법을 사용하여 버전을 명시할 수 있다. <br/>
+SemVer는 버전을 `major.minor.patch` 형식으로 표기하는 방법인데, 각각의 의미는 다음과 같다.
+
+- `major`: 호환되지 않는 변경 사항이 있을 때 증가. 즉, 큰 변화가 있을 때 증가한다.
+- `minor`: 하위 호환되는 기능이 추가되었을 때 증가
+- `patch`: 하위 호환되는 버그 수정이 있을 때 증가
+
+##### 정확한 버전 표기법
+
+이렇게 특정 버전을 명시할 수 있다.
+
+```json filename="package.json"
+{
+  "dependencies": {
+    "react": "17.0.2"
+  }
+}
+```
+
+이렇게 하면 정확히 `17.0.2` 버전의 `react` 패키지를 사용하게 된다.
+
+##### 캐럿(^)
+
+캐럿(`^`)은 `major` 버전이 같고, `minor`과 `patch` 버전은 최신 버전으로 설치한다.
+
+```json filename="package.json"
+{
+  "dependencies": {
+    "react": "^17.0.2"
+  }
+}
+```
+
+이렇게 하면 `17.0.2` 버전 이상이면서 `18.0.0` 버전 미만의 `react` 패키지를 사용하게 된다.
+
+##### 틸드(~)
+
+틸드(`~`)는 `major`와 `minor` 버전이 같고, `patch` 버전만 최신 버전으로 설치한다.
+
+```json filename="package.json"
+{
+  "dependencies": {
+    "react": "~17.0.2"
+  }
+}
+```
+
+이렇게 하면 `17.0.2` 버전 이상이면서 `17.1.0` 버전 미만의 `react` 패키지를 사용하게 된다.
+
+##### 부등호
+
+부등호(`>`, `<`, `>=`, `<=`)를 사용하여 특정 범위의 버전을 명시할 수 있다.
+
+```json filename="package.json"
+{
+  "dependencies": {
+    "react": ">=17.0.2 <18.0.0"
+  }
+}
+```
+
+이렇게 하면 `17.0.2` 버전 이상이면서 `18.0.0` 버전 미만의 `react` 패키지를 사용하게 된다.
+
+##### latest
+
+`latest`는 항상 최신 버전을 사용하게 된다.
+
+```json filename="package.json"
+{
+  "dependencies": {
+    "react": "latest"
+  }
+}
+```
+
+### devDependencies
+
+`devDependencies` 필드는 프로젝트를 개발할 때 필요한 패키지를 정의하는데 사용된다. <br/>
+이 필드에 정의된 패키지들은 프로젝트를 개발할 때만 필요한 패키지들이다.
+
+```json filename="package.json"
+{
+  "devDependencies": {
+    "babel": "^7.15.0",
+    "eslint": "^8.0.0"
+  }
+}
+```
+
+위의 예시에서 `babel`과 `eslint` 패키지는 프로젝트를 개발할 때만 필요하다. <br/>
+따라서 빌드할 때나 프로덕션 환경에서는 이 패키지들은 포함되지 않는다.
+
+### peerDependencies
+
+`peerDependencies` 필드는 패키지가 의존하는 다른 패키지의 버전을 명시적으로 정의하는데 사용된다. <br/>
+이 필드에 정의된 패키지들은 프로젝트에서 직접 사용되지 않지만, 의존하는 패키지들이 필요로 하는 패키지들이다. <br/>
+어떤 라이브러리를 만들었다고 가정해보자.
+
+```json filename="your-library/package.json"
+{
+  "peerDependencies": {
+    "react": "^17.0.2"
+  }
+}
+```
+
+이 라이브러리는 `17.0.2` 버전 이상이면서 `18.0.0` 버전 미만의 `react` 패키지를 사용한다. <br/>
+따라서 이 라이브러리를 사용하는 프로젝트에서는 명시된 버전의 `react` 패키지를 설치해야 한다. <br/>
+그렇지 않으면 다음과 같은 경고 메시지가 나타난다. (Node.js 20.12.0, Yarn 4.0.0 기준)
+
+```bash
+your-service doesn't provide react (p37a3f), requested by your-library
+```
