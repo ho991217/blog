@@ -1,6 +1,178 @@
 ---
 title: CommonJS와 ECMAScript 모듈 시스템의 사용과 상호 호환
-description: Node.js에서 CommonJS와 ECMAScript 모듈 시스템을 사용하는 방법과 상호 호환성에 대해 알아보자.
 date: 2024년 6월 23일
 image: /images/insight/module_systems_on_nodejs/thumbnail.png
 ---
+
+## CommonJS와 ECMAScript 모듈 시스템
+
+CommonJS와 ECMAScript는 JavaScript에서 모듈을 정의하고 사용하는 두가지 표준이다. <br/>
+이 두 시스템은 JavaScript의 모듈화와 코드의 재사용성을 높이기 위해 개발되었다.
+
+이번 글에서는 CommonJS와 ECMAScript 모듈 시스템의 사용과 상호 호환에 대해 알아보겠다.
+
+### CommonJS
+
+CommonJS는 주로 서버 측 환경인 Node.js에서 사용되는 모듈 시스템이다. <br/> 그 이유는 [CommonJS와 ECMAScript 모듈 시스템의 차이](#차이점)에서 설명하겠다.
+
+CommonJS 모듈은 `require` 함수를 통해 다른 모듈을 불러오고, `module.exports` 객체를 통해 모듈을 내보낸다.
+
+```js showLineNumbers copy filename="math.js"
+const add = (a, b) => a + b;
+const subtract = (a, b) => a - b;
+
+module.exports = {
+  add,
+  subtract,
+};
+```
+
+```js showLineNumbers copy filename="index.js"
+const math = require('./math');
+
+console.log(math.add(1, 2)); // 3
+console.log(math.subtract(3, 2)); // 1
+```
+
+#### ECMAScript
+
+ECMAScript 모듈은 일반적으로 브라우저 환경에서 사용되는 모듈 시스템이다. <br/>
+ECMAScript 모듈은 `import` 문을 통해 다른 모듈을 불러오고, `export` 키워드를 통해 모듈을 내보낸다.
+
+```js showLineNumbers copy filename="math.js"
+export const add = (a, b) => a + b;
+export const subtract = (a, b) => a - b;
+
+// 혹은
+// export { add, subtract };
+// 도 가능하다.
+```
+
+```js showLineNumbers copy filename="index.js"
+import { add, subtract } from './math.js';
+
+console.log(add(1, 2)); // 3
+console.log(subtract(3, 2)); // 1
+```
+
+### 사용 방법
+
+`.js`파일은 기본적으로 CommonJS 모듈로 인식되기 때문에, ECMAScript 모듈을 사용하려면 확장자를 `.mjs`로 변경해야 한다. <br/>
+`.cjs`로 확장자를 지정함으로써 CommonJS 모듈로만 인식되도록 할 수 있다.
+
+또는 가장 가까운 `package.json` 파일을 찾아 `type` 필드를 통해 모듈 시스템을 지정할 수 있다.
+
+만약 `"type": "module"{:json}`으로 지정되어 있다면 `.js`파일은 ECMAScript 모듈로 인식되고, `"type": "commonjs"{:json}`로 지정되어 있다면 CommonJS 모듈로 인식된다.
+
+### 차이점
+
+CommonJS와 ECMAScript 모듈 시스템의 차이점에 대해서 알아보자.
+
+#### 동기/비동기 로딩
+
+CommonJS는 동기적으로 모듈을 로딩하고, ECMAScript는 비동기적으로 모듈을 로딩한다.
+즉, `require`구문은 모듈이 로딩될 때까지 코드 실행을 멈추지만, `import`구문은 모듈이 로딩되기 전에 코드 실행을 계속한다.
+
+여기서 환경의 차이가 발생한다. <br/>
+JavaScript가 브라우저에서 동작할 때는`<script>{:html}` 태그를 이용해 파일들을 로드하게 되는데, 이 순서에 따라 전역변수가 오염될 수 있었다. <br/>
+또한 브라우저는 JavaScript를 매번 불러와야 하기 때문에 파일들의 순서가 중요하다. 그러나 각 스크립트가 언제 로딩될지 모르기 때문에 비동기 문제가 생길 수 있다.
+
+따라서 CommonJS의 동기적 로딩은 브라우저 환경에서 문제가 될 수 있다. <br/>
+이러한 문제를 해결하기 위해 ECMAScript는 비동기적 로딩을 지원한다.
+
+#### 최상단 await
+
+최상단에서 `await` 키워드를 사용할 수 있는지 여부도 CommonJS와 ECMAScript의 차이 중 하나이다. <br/>
+최상단 `await`란 모듈의 최상단에서 `await` 키워드를 사용하는 것을 말하는데, 모듈이 로드될 때 비동기 작업이 실행된다.
+
+```js showLineNumbers copy filename="db.mjs"
+export async function initializeDB() {
+  // 비동기 데이터베이스 초기화 작업
+  await new Promise((resolve) => setTimeout(resolve, 1000)); // 1초 대기
+  console.log('Database setup complete');
+}
+```
+
+```js showLineNumbers copy filename="initDB.mjs"
+import { initializeDB } from './db.js';
+
+await initializeDB();
+
+console.log('Database initialized');
+```
+
+ECMAScript는 이렇게 최상단에서 `await` 키워드를 사용할 수 있지만, CommonJS에서는 사용할 수 없다.
+
+#### 동적 로딩 (Dynamic Import)
+
+ECMAScript 모듈은 동적으로 모듈을 로딩할 수 있는 `import()` 함수를 제공한다. <br/>
+이 함수는 Promise를 반환하며, 모듈을 비동기적으로 로딩할 수 있다.
+
+```js showLineNumbers copy filename="index.mjs"
+const math = await import('./math.js');
+
+console.log(math.add(1, 2)); // 3
+
+// 혹은
+// const { add } = await import('./math.js');
+// console.log(add(1, 2)); // 3
+```
+
+이렇게 모듈을 동적으로 로딩하게 되면 필요한 모듈만 로딩하여 성능을 향상시킬 수 있으며, 필요한 시점에만 모듈을 로딩할 수 있다. <br/>
+Webpack과 같은 번들러는 이러한 동적 로딩을 통해 어플리케이션을 여러 청크로 나누어 코드 스플리팅을 지원한다.
+
+#### 모듈 경로
+
+CommonJS는 상대 경로를 사용해 모듈을 로딩한다. <br/>
+반면 ECMAScript는 상대 경로 뿐만 아니라 절대 경로도 사용할 수 있다.
+
+```js showLineNumbers copy filename="index.mjs"
+import { add } from './math.js'; // 상대 경로
+import { add } from '/math.js'; // 절대 경로
+```
+
+```js showLineNumbers copy filename="index.cjs"
+const { add } = require('./math.js'); // 상대 경로
+// const { add } = require('/math.js'); // 절대 경로는 사용할 수 없다.
+```
+
+#### 확장자
+
+CommonJS는 확장자를 생략할 수 있지만, ECMAScript는 ESM의 표준 규칙에 따라 Node.js가 모듈을 해석하기 때문에, 확장자를 명시해야 한다.
+
+```js showLineNumbers copy filename="index.mjs"
+import { add } from './math.js'; // 확장자를 명시해야 한다.
+```
+
+```js showLineNumbers copy filename="index.cjs"
+const { add } = require('./math.js'); // 확장자를 생략할 수 있다.
+```
+
+다만, Webpack과 같은 모듈 번들러를 사용하거나 Babel 같은 트랜스파일러를 사용하면 확장자를 생략할 수 있다. <br/>
+
+```js showLineNumbers copy filename="webpack.config.js"
+module.exports = {
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
+};
+```
+
+```json showLineNumbers copy filename=".babelrc"
+{
+  "presets": ["@babel/preset-env"],
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["./src"],
+        "extensions": [".js", ".jsx"]
+      }
+    ]
+  ]
+}
+```
+
+### 상호 호환
+
+`require`함수로는 ESM 모듈을 불러올 수 없다. <br/>
