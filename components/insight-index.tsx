@@ -9,7 +9,7 @@ export default function InsightIndex() {
           <Link
             href={page.route}
             style={{ color: 'inherit', textDecoration: 'none' }}
-            className='block font-semibold mt-8 text-2xl mb-6'
+            className='block font-semibold mt-8 text-2xl leading-9'
           >
             {page.meta?.title || page.meta?.title || page.name}
             {page.meta?.image && (
@@ -21,8 +21,13 @@ export default function InsightIndex() {
             )}
           </Link>
         </h3>
-        <p className='opacity-80 leading-7'>{page.meta?.description} </p>
-        <span className='inline-block'>
+        {page.meta?.description && (
+          <p className='opacity-80 leading-7'>{page.meta?.description} </p>
+        )}
+        {page.meta?.date && (
+          <p className='opacity-50 text-sm mt-1 leading-7'>{page.meta.date}</p>
+        )}
+        <span className='inline-block mt-4'>
           <Link
             href={page.route}
             className='text-[color:hsl(var(--nextra-primary-hue),100%,50%)] underline underline-offset-2 decoration-from-font'
@@ -30,11 +35,6 @@ export default function InsightIndex() {
             더 보기 →
           </Link>
         </span>
-        {page.meta?.date ? (
-          <p className='opacity-50 text-sm mt-6 leading-7'>
-            {page.meta.date}
-          </p>
-        ) : null}
       </div>
     );
   });

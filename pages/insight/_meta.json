@@ -1,4 +1,34 @@
 {
+  "error_detection_and_debugging_for_safe_service_and_ssr_server": {
+    "title": "안전한 서비스와 SSR 서버 운영을 위한 오류 감지 시스템과 디버깅",
+    "description": "안전한 서비스와 SSR 서버를 위한 에러 검출과 디버깅 방법을 알아보자.",
+    "date": "2024년 6월 23일"
+  },
+  "ci_cd_on_frontend_dev_environment": {
+    "title": "프론트엔드 개발 환경에서의 CI/CD",
+    "description": "프론트엔드 개발 환경에서 CI/CD를 구축하는 방법과 활용 방법을 알아보자.",
+    "date": "2024년 6월 23일"
+  },
+  "transpiler_and_bundler": {
+    "title": "트랜스파일러와 번들러의 동작과 활용",
+    "description": "트랜스파일러와 번들러의 동작 방식과 활용 방법을 알아보자.",
+    "date": "2024년 6월 23일"
+  },
+  "dependencies_devDependencies_peerDependencies": {
+    "title": "dependencies, devDependencies, 그리고 peerDependencies",
+    "description": "npm 패키지의 dependencies, devDependencies, 그리고 peerDependencies의 동작 방식에서의 차이점을 알아보자.",
+    "date": "2024년 6월 23일"
+  },
+  "module_systems_on_nodejs": {
+    "title": "CommonJS와 ECMAScript 모듈 시스템의 사용과 상호 호환",
+    "description": "Node.js에서 CommonJS와 ECMAScript 모듈 시스템을 사용하는 방법과 상호 호환성에 대해 알아보자.",
+    "date": "2024년 6월 23일"
+  },
+  "git": {
+    "title": "Git을 구성하는 요소와 명령어의 동작 방식",
+    "description": "Git을 구성하는 요소와 명령어의 동작 방식을 알아보자.",
+    "date": "2024년 6월 23일"
+  },
   "does_next_needs_tanstack_query": {
     "title": "Next JS에 Tanstack Query가 필요할까?",
     "theme": {
