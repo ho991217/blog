@@ -1,12 +1,7 @@
 {
-  "error_detection_and_debugging_for_safe_service_and_ssr_server": {
-    "title": "안전한 서비스와 SSR 서버 운영을 위한 오류 감지 시스템과 디버깅",
+  "error_detection_and_debugging_for_ssr": {
+    "title": "SSR를 위한 오류 감지 시스템과 디버깅",
     "description": "안전한 서비스와 SSR 서버를 위한 에러 검출과 디버깅 방법을 알아보자.",
-    "date": "2024년 6월 23일"
-  },
-  "ci_cd_on_frontend_dev_environment": {
-    "title": "프론트엔드 개발 환경에서의 CI/CD",
-    "description": "프론트엔드 개발 환경에서 CI/CD를 구축하는 방법과 활용 방법을 알아보자.",
     "date": "2024년 6월 23일"
   },
   "transpiler_and_bundler": {
