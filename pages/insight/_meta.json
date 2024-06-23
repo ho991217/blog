@@ -10,7 +10,7 @@
     "date": "2024년 6월 23일"
   },
   "transpiler_and_bundler": {
-    "title": "트랜스파일러와 번들러의 동작과 활용",
+    "title": "트랜스파일러와 번들러",
     "description": "트랜스파일러와 번들러의 동작 방식과 활용 방법을 알아보자.",
     "date": "2024년 6월 23일"
   },
@@ -20,7 +20,7 @@
     "date": "2024년 6월 23일"
   },
   "module_systems_on_nodejs": {
-    "title": "CommonJS와 ECMAScript 모듈 시스템의 사용과 상호 호환",
+    "title": "CommonJS와 ECMAScript 모듈 시스템",
     "description": "Node.js에서 CommonJS와 ECMAScript 모듈 시스템을 사용하는 방법과 상호 호환성에 대해 알아보자.",
     "date": "2024년 6월 23일"
   },
