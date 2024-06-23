@@ -49,17 +49,6 @@ import { Steps } from 'nextra/components';
 
     <Card>
       <Card.Title>
-      스택
-      </Card.Title>
-      <div className='flex gap-1 flex-wrap'>
-        {badgeName.map(({name}) => (
-          <Badge name={name} />
-        ))}
-      </div>
-    </Card>
-
-    <Card>
-      <Card.Title>
       프로젝트
       </Card.Title>
       <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
@@ -90,6 +79,17 @@ import { Steps } from 'nextra/components';
           techStack={["React", "TypeScript", "Next.js", "Ant Design", "Prisma", "Sentry", "Tailwindcss", "express.js", "React Query", "GraphQL", "RDS", "pm2"]}
         />
 
+      </div>
+    </Card>
+
+    <Card>
+      <Card.Title>
+      스택
+      </Card.Title>
+      <div className='flex gap-1 flex-wrap'>
+        {badgeName.map(({name}) => (
+          <Badge name={name} />
+        ))}
       </div>
     </Card>
 
