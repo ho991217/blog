@@ -1,5 +1,106 @@
 ---
-title: 트랜스파일러와 번들어의 동작과 활용
+title: 트랜스파일러와 번들러의 동작과 활용
 date: 2024년 6월 23일
 image: /images/insight/transpiler_and_bundler/thumbnail.png
 ---
+
+## 트랜스파일러와 번들러
+
+트랜스파일러와 번들러는 JavaScript 생태계에서 중요한 역할을 하는 도구들이다. <br/>
+이 글에서는 트랜스파일러와 번들러의 역할과 동작 방식에 대해 알아본다.
+
+### 트랜스파일러
+
+트랜스파일러는 사실 컴파일러의 일종으로 볼 수 있다. <br/>
+트랜스파일러는 소스 코드를 다른 버전의 JavaScript로 변환하는 도구이다. <br/>
+Babel이나 TypeScript와 같은 도구들이 트랜스파일러의 역할을 수행하는데, 각각 알아보자.
+
+#### Babel
+
+Babel은 ES6+ 코드를 ES5 코드로 변환하여 구형 브라우저에서도 실행할 수 있게 해준다. <br/>
+
+```javascript
+// ES6+ 코드
+const arrowFunction = () => {
+  console.log('Hello, Babel!');
+};
+```
+
+위의 코드는 ES6+ 코드이다. <br/>
+이 코드를 Babel을 사용하여 ES5 코드로 변환하면 다음과 같이 변환된다.
+
+```javascript
+// ES5 코드
+var arrowFunction = function arrowFunction() {
+  console.log('Hello, Babel!');
+};
+```
+
+이렇게 Babel을 사용하면 ES6+ 코드를 ES5 코드로 변환할 수 있다.
+
+#### TypeScript
+
+TypeScript는 정적 타입을 지원하는 JavaScript의 슈퍼셋이다. <br/>
+TypeScript는 JavaScript 코드를 TypeScript 코드로 변환하여 타입을 검사하고, 타입 오류를 사전에 방지할 수 있다.
+
+```typescript
+// TypeScript 코드
+const arrowFunction = (): void => {
+  console.log('Hello, TypeScript!');
+};
+```
+
+위의 코드는 TypeScript 코드인데, 이 코드를 TypeScript 컴파일러를 사용하여 JavaScript 코드로 변환하면 다음과 같이 변환된다.
+
+```javascript
+// JavaScript 코드
+const arrowFunction = () => {
+  console.log('Hello, TypeScript!');
+};
+```
+
+이렇게 TypeScript를 사용하면 정적 타입을 지원하는 JavaScript 코드를 작성할 수 있다.
+
+### 번들러
+
+번들러는 여러 개의 파일과 모듈들을 하나의 파일로 묶어주는 도구이다. 번들러에는 대표적으로 Webpack과 Parcel이 있다.
+
+#### Webpack
+
+Webpack은 모듈 번들러로, 여러 개의 파일과 모듈들을 하나의 파일로 묶어준다. <br/>
+다양한 파일들을 하나의 파일로 번들링할 수 있으며, 코드 스플리팅, 트리 쉐이킹, 로더, 플러그인 등 다양한 기능을 제공한다.
+
+import { Callout } from 'nextra/components';
+
+<Callout type='info' emoji='💡'>
+  **코드 스플리팅** 번들링된 파일을 여러 개의 작은 파일로 분할하는 기능이다.
+  이를 통해 초기 로딩 시에는 필요한 파일만 로드하고, 나중에 필요한 파일은 나중에
+  로드할 수 있다. 이렇게 하면 초기 로딩 속도가 빨라진다.
+</Callout>
+
+<Callout type='info' emoji='💡'>
+  **트리 쉐이킹** 사용하지 않는 코드를 제거하는 기능이다. 트리 쉐이킹을 통해
+  번들링된 파일의 크기를 줄일 수 있다.
+</Callout>
+
+#### Parcel
+
+Parcel은 웹 애플리케이션 번들러로, Webpack과 유사한 기능을 제공한다. <br/>
+Webpack과 달리 설정이 필요 없으며, 간단하게 사용할 수 있다는 장점이 있다. <br/>
+빌드 속도가 빠르고, HMR(Hot Module Replacement)을 지원한다.
+
+<Callout type='info' emoji='💡'>
+  **HMR(Hot Module Replacement)** 모듈이 수정되었을 때, 수정된 모듈만 다시
+  로드하여 새로고침 없이 애플리케이션을 업데이트하는 기능이다.
+</Callout>
+
+#### 번들링을 하면 뭐가 좋은데?
+
+번들링을 하면 네트워크 효율성이 높아진다. <br/>
+여러 개의 파일을 하나의 파일로 묶어주기 때문에, 파일을 로드하는 요청 횟수가 줄어들어 네트워크 성능이 향상된다.
+
+![번들링 전후 비교](/images/insight/transpiler_and_bundler/with_or_without_bundler.png)
+
+100개의 JavaScript 파일을 번들링하면 1개의 JavaScript 파일로 묶이기 때문에, 100번의 요청이 아닌 1번의 요청으로 파일을 로드할 수 있다.
+
+게다가, 번들러는 코드 스플리팅, 트리 쉐이킹, 그리고 압축 등의 동작을 통해 번들링된 파일의 크기를 줄여주기 때문에, 네트워크 효율성을 더 높여준다.
