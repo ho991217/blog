@@ -14,8 +14,8 @@
     "description": "트랜스파일러와 번들러의 동작 방식과 활용 방법을 알아보자.",
     "date": "2024년 6월 23일"
   },
-  "dependencies_devDependencies_peerDependencies": {
-    "title": "dependencies, devDependencies, 그리고 peerDependencies",
+  "what_is_peerDependencies": {
+    "title": "peerDependencies가 뭐지?",
     "description": "npm 패키지의 dependencies, devDependencies, 그리고 peerDependencies의 동작 방식에서의 차이점을 알아보자.",
     "date": "2024년 6월 23일"
   },

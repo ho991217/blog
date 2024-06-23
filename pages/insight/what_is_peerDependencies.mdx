@@ -1,12 +1,13 @@
 ---
-title: dependencies, devDependencies, 그리고 peerDependencies
+title: peerDependencies가 뭐지?
 date: 2024년 6월 23일
-image: /images/insight/dependencies_devDependencies_peerDependencies/thumbnail.png
+image: /images/insight/what_is_peerDependencies/thumbnail.png
 ---
 
-## dependencies, devDependencies, 그리고 peerDependencies
+## peerDependencies가 뭐지?
 
-`dependencies`, `devDependencies`, `peerDependencies`는 npm 패키지의 종속성을 관리하는데 사용되는 필드이다. <br/>
+`peerDependencies`를 알아보기 전에 `dependencies`, `devDependencies`에 대해 알아보자. <br/>
+`dependencies`, `devDependencies`, `peerDependencies`는 모두 npm 패키지의 종속성을 관리하는데 사용되는 필드이다. <br/>
 이 필드들은 `package.json` 파일에 정의되어 있으며, 이 글에서는 각 필드의 역할과 차이점에 대해 알아보겠다.
 
 ### dependencies
@@ -121,6 +122,7 @@ SemVer는 버전을 `major.minor.patch` 형식으로 표기하는 방법인데, 
 
 ### peerDependencies
 
+그러면 `peerDependencies`는 무엇일까? <br/>
 `peerDependencies` 필드는 패키지가 의존하는 다른 패키지의 버전을 명시적으로 정의하는데 사용된다. <br/>
 이 필드에 정의된 패키지들은 프로젝트에서 직접 사용되지 않지만, 의존하는 패키지들이 필요로 하는 패키지들이다. <br/>
 어떤 라이브러리를 만들었다고 가정해보자.
@@ -140,3 +142,39 @@ SemVer는 버전을 `major.minor.patch` 형식으로 표기하는 방법인데, 
 ```bash
 your-service doesn't provide react (p37a3f), requested by your-library
 ```
+
+#### 그러면 왜?
+
+만약 `your-library`를 사용하는 `my-app`에서 이미 `react` 패키지를 설치했다고 가정해보자. <br/>
+그런데 이 `my-app`에서는 `16.0.0` 버전의 `react` 패키지를 사용하고 있다. <br/>
+
+```json filename="my-app/package.json"
+{
+  "dependencies": {
+    "react": "^16.0.0",
+    "your-library": "^1.0.0"
+  }
+}
+```
+
+그러면 `my-app`에는 다음과 같은 dependency tree가 생성된다.
+
+```plaintext
+my-app
+├─ react@16.0.0
+└─ your-library@1.0.0
+   └─ react@^17.0.2 (peer)
+```
+
+그러면 `my-app`과 `your-library`간의 의존성 충돌이 발생하고, 런타임에 오류가 발생할 수 있다. <br/>
+따라서 `your-library`에서 `react` 패키지의 버전을 명시적으로 정의하여, `my-app`에서는 해당 버전을 설치하도록 유도한다.
+
+import { Callout } from 'nextra/components';
+
+<Callout type='warning'>
+  **주의사항** <br />
+  `dependencies`와 달리 `peerDependencies`의 버전은 SemVer의 `major` 버전만 명시하는
+  것이 좋다. <br />
+  왜냐하면 _일반적으로_ `minor`와 `patch`는 하위 호환성을 보장하지만, `major`는
+  하위 호환성을 보장하지 않기 때문이다.
+</Callout>
