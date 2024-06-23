@@ -1,10 +1,16 @@
 import Card from 'components/ui/card';
-import { Contributions, Organization } from 'components/profile';
+import {
+  Contributions,
+  Organization,
+  Badge,
+  badgeName,
+  Project,
+} from 'components/profile';
 import { Steps } from 'nextra/components';
 
 <main className='w-full flex flex-col gap-4 mt-6 md:flex-row'>
   <section className='w-full flex flex-col md:max-w-72'>
-    <img src='/images/이호연.jpg' className='w-full rounded-xl mb-4' />
+    <img src='/images/profile.png' className='w-full rounded-xl mb-4' />
     <div>
       <h4 className='text-xl font-bold'>이호연</h4>
       <p className="text-neutral-500 mb-4">@ho991217</p>
@@ -20,9 +26,16 @@ import { Steps } from 'nextra/components';
       <br />
       <p>저는</p>
       <ul className="list-inside list-disc">
-        <li className="list-item">업무에 애정을 가지고 몰입하는 <strong>워커홀릭</strong> 입니다.</li>
-        <li className="list-item">업무에 애정을 가지고 몰입하는 <strong>워커홀릭</strong> 입니다.</li>
-        <li className="list-item">업무에 애정을 가지고 몰입하는 <strong>워커홀릭</strong> 입니다.</li>
+        <li className="list-item"><strong className='text-blue-700'>React, TypeScript, Next.js</strong> 를 이용해서 프론트엔드 웹 개발을 했습니다.</li>
+        <li className="list-item">Toss의 <strong className='text-blue-700'>es-toolkit, es-hangul, slash</strong> 에 오픈소스 기여했습니다.</li>
+        <li className="list-item"><strong className='text-blue-700'>express.js, GraphQL</strong> 을 이용하여 백엔드 웹 개발을 했습니다.</li>
+        <li className="list-item"><strong className='text-blue-700'>Sentry, Vercel, Google Analytics</strong> 등을 이용하여 오류를 로깅하고 사용자 경험을 분석했습니다.</li>
+      </ul>
+      <br />
+      <ul className="list-inside list-disc">
+        <li className='list-item'>순간 동시 접속자 1,440 명의 티켓팅 사이트를 2년간 개발하고 운영 했습니다.</li>
+        <li className='list-item'>1년간 스타트업 웹 페이지에 기능을 추가하고 유지보수 했습니다.</li>
+        <li className='list-item'>2년간 단국대학교 총학생회 웹 페이지를 개발하고 유지보수 했습니다.</li>
       </ul>
       <br />
       <div className="flex gap-1 items-center">
@@ -31,6 +44,52 @@ import { Steps } from 'nextra/components';
           <img src="https://wakatime.com/badge/user/c6d7f260-ad25-4072-a4ea-11cdfc7fdcb9.svg" alt="Total time coded since Oct 7 2021" />
         </a>
       <p>시간동안 성장했습니다.</p>
+      </div>
+    </Card>
+
+    <Card>
+      <Card.Title>
+      스택
+      </Card.Title>
+      <div className='flex gap-1 flex-wrap'>
+        {badgeName.map(({name}) => (
+          <Badge name={name} />
+        ))}
+      </div>
+    </Card>
+
+    <Card>
+      <Card.Title>
+      프로젝트
+      </Card.Title>
+      <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
+        <Project
+          title="단페스타"
+          description="단국대학교 재학생 전용 구역 ‘단국존’의 티켓팅 시스템"
+          website="https://danfesta.com"
+          blogUrl="/danfesta/intro"
+          githubUrl="https://github.com/ho991217/danfesta2024"
+          period="2023. 5 ~ 2024. 5"
+          techStack={["React", "TypeScript", "Next.js", "zustand", "Vercel", "Sentry", "styled-components"]}
+        />
+        <Project
+          title="Swifty"
+          description="단페스타 프로젝트를 발전시켜 전국의 대학교를 대상으로 확장한 프로젝트"
+          website="https://swifty.kr"
+          blogUrl="/swifty/intro"
+          githubUrl="https://github.com/ToyVallet/swifty-frontend"
+          period="2024. 4 ~"
+          techStack={["React", "TypeScript", "Next.js", "turborepo", "Vercel", "Sentry", "Tailwindcss"]}
+        />
+        <Project
+          title="LinkValue"
+          description="스타트업과 투자자를 이어주는 플랫폼"
+          website="https://linkvalue.kr"
+          blogUrl="/linkvalue/intro"
+          period="2023. 6 ~ 2024. 5"
+          techStack={["React", "TypeScript", "Next.js", "Ant Design", "Prisma", "Sentry", "Tailwindcss", "express.js", "React Query", "GraphQL", "RDS", "pm2"]}
+        />
+
       </div>
     </Card>
 
