@@ -4,42 +4,13 @@
     "type": "separator",
     "title": "2024"
   },
-  "danfesta": "단페스타",
-  "swifty": "스위프티",
-  "dku-student-council": "단국대학교 총학생회",
-  "linkvalue": "링크밸류",
-  "--": {
-    "type": "separator",
-    "title": "2023"
-  },
-  "wpluscoding": "W+ 코딩",
-  "dansinsa": "단신사",
-  "d-coding": "D-코딩",
-  "----": {
-    "type": "separator",
-    "title": "2022"
-  },
-  "aegis": "이지스",
-  "gyeong-so-ton": "경소톤",
-  "hanium": "한이음",
-  "-----": {
-    "type": "separator",
-    "title": "그 외"
-  },
-  "opensource-contribution": "오픈소스 기여",
-  "speaker": "연사",
+  "relay": "Relay",
+  "insight": "인사이트",
   "profile": {
     "title": "프로필",
     "type": "page",
     "theme": {
       "layout": "full"
-    }
-  },
-  "insight": {
-    "title": "인사이트",
-    "type": "page",
-    "theme": {
-      "sidebar": false
     }
   },
   "contact": {
