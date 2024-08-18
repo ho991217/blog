@@ -1,5 +1,5 @@
 import React from 'react';
-import { DocsThemeConfig, useConfig } from 'nextra-theme-docs';
+import { type DocsThemeConfig, useConfig } from 'nextra-theme-docs';
 import { useRouter } from 'next/router';
 import { Thumbnail, Author } from './components';
 
@@ -52,6 +52,7 @@ const config: DocsThemeConfig = {
   chat: {
     link: 'https://ho991217.notion.site/2024-56322d3440ce493692b68393fc933de7?pvs=4',
     icon: (
+      // biome-ignore lint/a11y/noSvgWithoutTitle: <explanation>
       <svg
         xmlns='http://www.w3.org/2000/svg'
         width='24'
@@ -107,7 +108,7 @@ const config: DocsThemeConfig = {
 
     const ogTitle = title
       ? `${title} – 이호연 기술 블로그`
-      : `이호연 기술블로그`;
+      : '이호연 기술블로그';
     const ogDescription =
       frontMatter.description || '이호연 기술 블로그입니다.';
     const ogImage = frontMatter.image || '/images/og.png';
